@@ -11,8 +11,8 @@ from dff.utils.testing.common import (
 )
 
 interface = PollingTelegramInterface("6906350021:AAGomOZF6ZtxcZUAoxG60k83zL0hOISyWqM")
-# Note: token is exposed, only safety present is that the
-# repo on github is set to private.
+# Note: token is exposed, there is no safety present.
+# Though, I could set the repo on github to private.
 
 pipeline = Pipeline.from_script(
     script=script.script,
