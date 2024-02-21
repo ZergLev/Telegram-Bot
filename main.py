@@ -4,24 +4,41 @@ import happy_path
 # They are in separate files to not clutter the main file.
 
 from dff.messengers.telegram import PollingTelegramInterface
-from dff.pipeline import Pipeline
+from dff.pipeline import Pipeline, Service, ACTOR
+from dff.stats import (
+    OtelInstrumentor,
+    default_extractors,
+)
 from dff.utils.testing.common import (
     is_interactive_mode,
     check_happy_path,
 )
 
+dff_instrumentor = OtelInstrumentor.from_url("grpc://localhost:4317", insecure=True)
+dff_instrumentor.instrument()
+
 interface = PollingTelegramInterface("6906350021:AAGomOZF6ZtxcZUAoxG60k83zL0hOISyWqM")
 # Note: token is exposed, there is no safety present.
-# Though, I could set the repo on github to private.
+# To-do: Docker Secrets
 
-pipeline = Pipeline.from_script(
-    script=script.script,
-    # Taking the script from the script.py file.
-    start_label=("global_flow", "start_node"),
-    fallback_label=("global_flow", "fallback_node"),
-    messenger_interface=interface,
+pipeline = Pipeline.from_dict(
+    {
+        "script": script.script,
+        # Taking the script from the script.py file.
+        "start_label": ("global_flow", "start_node"),
+        "fallback_label": ("global_flow", "fallback_node"),
+        "messenger_interface": interface,
+        "components": [
+                    Service(
+                        handler=ACTOR,
+                        after_handler=[
+                            default_extractors.get_current_label,
+                        ],
+                    ),
+        ],
+    }
 )
-# Note: Maybe the pipeline also deserves it's own file,
+# Note: Maybe the pipeline also deserves its own file,
 # but it's not that large right now
 
 
