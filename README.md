@@ -1,7 +1,10 @@
 # Telegram-Bot
 A beginner level bot using Dialog Flow Framework
 
-Requirements: Python 3 or Docker with Docker-Compose
+Requirements. 
+To use the bot you need either: 
+1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
+or 2. Docker with Docker-Compose
 
 To run the bot directly with your python interpreter type in the terminal:
 ```commandline
