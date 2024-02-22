@@ -1,15 +1,22 @@
 # Telegram-Bot
 A beginner level bot using Dialog Flow Framework
 
-Requirements: Python 3
+Requirements: Python 3 or Docker with Docker-Compose
 
-To run the bot, type in the terminal:
+To run the bot directly with your python interpreter type in the terminal:
 ```commandline
 python main.py
 ```
+Note that all dependencies (dff[telegram, stats]) need to be installed, unlike when you use Docker-Compose.
+You can check out the installation guide in the official DFF documentation:
+https://deeppavlov.github.io/dialog_flow_framework/get_started.html
 
-When running the bot without the data collector, you may want to ignore Command Line output
+To run the bot using Docker-Compose, type in the terminal:
+```commandline
+docker-compose run bot python main.py
+```
+When running the bot without the data collector running, you may want to ignore Command Line output.
+The program will inform you that it can't collect the data with OpenTelemetry. To remove that you can comment the get_current_label() line in main.py
 
 To run the data collector, check out the official DFF User Guide on Supersets:
-
 https://deeppavlov.github.io/dialog_flow_framework/user_guides/superset_guide.html
