@@ -2,9 +2,9 @@
 A beginner level bot using Dialog Flow Framework
 
 Requirements. 
-To use the bot you need either: 
+To use the bot you need either one of: 
 1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
-or 2. Docker with Docker-Compose
+2. Docker with Docker-Compose
 
 To run the bot directly with your python interpreter type in the terminal:
 ```commandline
