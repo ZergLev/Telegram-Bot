@@ -1,3 +1,5 @@
+import os
+# Used for taking telegram bot token as an environment variable
 import script
 import happy_path
 # Importing the bot's script and the test path.
@@ -17,8 +19,8 @@ from dff.utils.testing.common import (
 dff_instrumentor = OtelInstrumentor.from_url("grpc://localhost:4317", insecure=True)
 dff_instrumentor.instrument()
 
-interface = PollingTelegramInterface("6906350021:AAGomOZF6ZtxcZUAoxG60k83zL0hOISyWqM")
-# Note: token is exposed, there is no safety present.
+interface = PollingTelegramInterface(token=os.environ["TG_BOT_TOKEN"])
+# Note: token is exposed in .env file, there is no safety present.
 # To-do: Docker Secrets
 
 pipeline = Pipeline.from_dict(

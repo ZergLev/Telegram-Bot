@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    bot:
+        build: .
+        ports:
+            - "4317:4317"
+            - "4318:4318"
+            # Opening ports for OpenTelemetry collectors to work from container
+            # Same is done in DFF Documentation, I just copied the ports
+        volumes:
+            - .:/app:ro
+        env_file: .env

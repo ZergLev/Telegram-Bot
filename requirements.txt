@@ -1,1 +1,1 @@
-dff[telegram]>=0.4
+dff[telegram, stats]>=0.4
