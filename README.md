@@ -13,6 +13,7 @@ In order for the bot to work, set the bot token environment variable to your bot
 export TG_BOT_TOKEN=*******
 ```
 (To get the bot token follow the 'telebot' library documentation)
+
 To run the bot, type in the terminal:
 ```commandline
 python main.py
