@@ -8,6 +8,7 @@ To use the bot you need either one of:
 
 Running the bot.
 1. Directly with your python interpreter.
+
 In order for the bot to work, set the bot token environment variable to your bot token:
 ```commandline
 export TG_BOT_TOKEN=*******
@@ -23,6 +24,7 @@ You can check out the installation guide in the official DFF documentation:
 https://deeppavlov.github.io/dialog_flow_framework/get_started.html
 
 2. Using Docker-Compose
+   
 To run the bot, type in the terminal:
 ```commandline
 docker-compose run bot python main.py
