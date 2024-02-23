@@ -8,10 +8,11 @@ To use the bot you need either one of:
 
 Running the bot.
 1. Directly with your python interpreter.
-In order for the bot to work, set the bot token environment vaiable:
+In order for the bot to work, set the bot token environment variable to your bot token:
 ```commandline
 export TG_BOT_TOKEN=*******
 ```
+(To get the bot token follow the 'telebot' library documentation)
 To run the bot, type in the terminal:
 ```commandline
 python main.py
