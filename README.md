@@ -34,3 +34,6 @@ The program will inform you that it can't collect the data with OpenTelemetry. T
 
 To run the data collector, check out the official DFF User Guide on Supersets:
 https://deeppavlov.github.io/dialog_flow_framework/user_guides/superset_guide.html
+
+Issues:
+1. When running the bot from Docker, OpenTelemetry can't send data to the collector. I guess I just don't know enough about the two of these things to make it work.
