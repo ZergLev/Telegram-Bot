@@ -10,3 +10,4 @@ services:
         volumes:
             - .:/app:ro
         env_file: .env
+        command: [ "--config=/app/otelcol-config.yml", "--config=/app/otelcol-config-extras.yml" ]
