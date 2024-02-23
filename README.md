@@ -6,7 +6,13 @@ To use the bot you need either one of:
 1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
 2. Docker with Docker-Compose (Can't use data collection in this mode right now, it's TBD in the future)
 
-To run the bot directly with your python interpreter type in the terminal:
+Running the bot.
+1. Directly with your python interpreter.
+In order for the bot to work, set the bot token environment vaiable:
+```commandline
+export TG_BOT_TOKEN=*******
+```
+To run the bot, type in the terminal:
 ```commandline
 python main.py
 ```
@@ -14,7 +20,8 @@ Note that all dependencies (dff[telegram, stats]) need to be installed, unlike w
 You can check out the installation guide in the official DFF documentation:
 https://deeppavlov.github.io/dialog_flow_framework/get_started.html
 
-To run the bot using Docker-Compose, type in the terminal:
+2. Using Docker-Compose
+To run the bot, type in the terminal:
 ```commandline
 docker-compose run bot python main.py
 ```
