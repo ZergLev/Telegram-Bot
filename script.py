@@ -1,7 +1,18 @@
+import responses
+# Used to generate a custom response at ("greeting_flow", "request_topic")
+import conditions as custom_cond
+# Used for checking for topics in the user request
+
 import re
 from dff.script import conditions as cnd
 from dff.script import labels as lbl
-from dff.script import GLOBAL, LOCAL, TRANSITIONS, RESPONSE, Message
+from dff.script import (
+    GLOBAL,
+    LOCAL,
+    TRANSITIONS,
+    RESPONSE,
+    Message,
+)
 
 script = {
     GLOBAL: {
@@ -39,9 +50,9 @@ script = {
             # Saying goodbye to the user if there is nothing more to talk
             # about or if they say goodbye first.
 
-            ("sports_flow", "ask_node"): cnd.regexp(r"(sports|trivia)", re.I),
-            ("food_flow", "ask_node"): cnd.regexp(r"food", re.I),
-            ("greeting_flow", "topic_unknown_node"): cnd.regexp(r"talk about", re.I),
+            ("sports_flow", "ask_node"): custom_cond.is_topic_sports,
+            ("food_flow", "ask_node"): custom_cond.is_topic_food,
+            ("greeting_flow", "request_topic_node"): cnd.regexp(r"talk about", re.I),
             # Trying to determine if the user wants to talk about something,
             # then sending them where they want.
             # Could be done better by putting the topics in a list somewhere.
@@ -68,8 +79,8 @@ script = {
         "greeting_node": {
             RESPONSE: Message(text="Hello! How are you today?"),
             TRANSITIONS: {
-                "request_topic_node":
-                    cnd.regexp(r"(how are you|what about you)", re.I),
+                ("greeting_flow", "request_topic_node", 0.5): cnd.true(),
+                # This transition moves the conversation forward, whatever the user replies
             },
         },
         # Naming nodes randomly, since I don't know the relevant standards.
@@ -77,22 +88,14 @@ script = {
         # since node numbers and order could change in the future.
 
         "request_topic_node": {
-            RESPONSE: Message(text="I'm doing well. What do you want to talk about?"
-                                   " I know some sports trivia and I love food."),
+            RESPONSE: responses.ask_for_topic_custom_response,
             TRANSITIONS: {
                 "no_requests_node": cnd.regexp(r"(nothing|I don't know)", re.I),
+                ("sports_flow", "ask_node"): cnd.regexp(r"anything", re.I),
             },
         },
-        # Most TRANSITIONS from here are in the GLOBAL node.
-
-        "topic_unknown_node": {
-            RESPONSE: Message(text="Sorry, I don't know much about that topic."
-                                   " Is there any other topic you would talk about?"),
-        },
-        # Note: could remove this node by always saving previous node label
-        # to ctx.misc[] then use PRE-RESPONSE in request_topic node
-        # to change the RESPONSE accordingly.
-        # But that would also take up space and increase complexity, so maybe not.
+        # If the user doesn't know what to talk about the bot will suggest sports
+        # Most TRANSITIONS from this node are in the GLOBAL node.
 
         "no_requests_node": {
             RESPONSE: Message(text="Well then. Is there anything else you'd like?"),
