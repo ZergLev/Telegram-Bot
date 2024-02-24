@@ -35,6 +35,7 @@ pipeline = Pipeline.from_dict(
                         handler=ACTOR,
                         after_handler=[
                             default_extractors.get_current_label,
+                            default_extractors.get_last_request,
                         ],
                     ),
         ],
