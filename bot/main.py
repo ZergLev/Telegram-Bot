@@ -1,7 +1,6 @@
 import os
 # Used for taking telegram bot token as an environment variable
-import script
-import happy_path
+from core import script, happy_path
 # Importing the bot's script and the test path.
 # They are in separate files to not clutter the main file.
 

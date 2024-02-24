@@ -1,4 +1,4 @@
-from conditions import (
+from .conditions import (
     asked_how_bot_is_doing,
     topic_unknown,
 )

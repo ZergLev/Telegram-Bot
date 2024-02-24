@@ -1,6 +1,6 @@
-import responses
+from . import responses
 # Used to generate a custom response at ("greeting_flow", "request_topic")
-import conditions as custom_cond
+from . import conditions as custom_cond
 # Used for checking for topics in the user request
 
 import re

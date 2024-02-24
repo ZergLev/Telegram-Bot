@@ -1,15 +1,19 @@
 version: "3.9"
 services:
     bot:
-        build: .
+        build: /bot
         volumes:
-            - .:/app:ro
-            - ./otelcol-config.yml:/app/otelcol-config.yml:ro
-            - ./otelcol-config-extras.yml:/app/otelcol-config-extras.yml:ro
-        env_file: .env
-        command: [ "--config=/app/otelcol-config.yml", "--config=/app/otelcol-config-extras.yml" ]
-        ports:
-            - "4317:4317"
-            - "4318:4318"
-            # Opening ports for OpenTelemetry collectors to work from container
-            # Same is done in DFF Documentation, I just copied the ports
+            - ./bot:/app:ro
+        environment:
+            TG_BOT_TOKEN: 6906350021:AAGomOZF6ZtxcZUAoxG60k83zL0hOISyWqM
+            #/run/secrets/bot_token
+        secrets:
+            - bot_token
+        expose:
+            - "4317"
+            - "4318"
+            # Opening ports for OpenTelemetry instrumentors to work from container
+            # About the same is done in DFF Documentation, I just copied the ports
+secrets:
+    bot_token:
+        file: ./token.txt
