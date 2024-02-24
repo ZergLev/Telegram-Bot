@@ -18,10 +18,13 @@ from dff.utils.testing.common import (
 dff_instrumentor = OtelInstrumentor.from_url("grpc://localhost:4317", insecure=True)
 dff_instrumentor.instrument()
 
-f = open(os.getenv("TG_BOT_TOKEN"))
+file = open(os.getenv("TG_BOT_TOKEN"))
 interface = PollingTelegramInterface(token=f.readline())
+file.close()
 # TG_BOT_TOKEN environment variable equals an address: /run/secrets/bot_token
-# Because of it, the "file" needs to be accessed somehow
+# Because of it, the "file" needs to be accessed directly.
+# For now I'm just doing it like this.
+
 # Note: token is exposed in token.txt file, 
 # but now it's used with Docker Secrets
 
