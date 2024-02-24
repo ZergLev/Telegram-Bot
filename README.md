@@ -27,7 +27,7 @@ Note that all dependencies (dff[telegram, stats]) need to be installed, unlike w
 You can check out the installation guide in the official DFF documentation:
 https://deeppavlov.github.io/dialog_flow_framework/get_started.html
 
-2. Using Docker-Compose
+2. Using Docker-Compose (Recommended)
    
 To run the bot, type in the terminal:
 ```commandline
