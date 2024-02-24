@@ -3,7 +3,7 @@ A beginner level bot using Dialog Flow Framework
 
 Requirements. 
 
-It's not recommended to use Windows if you plan on collecting data, because Apache Superset doesn't have official support for it. So far, I haven't managed to launch data collection on Windows. Instead, you could use Linux or a virtual machine.
+It's not recommended to use Windows if you plan on collecting data, because Apache Superset doesn't have official support for it. So far, I haven't managed to launch data collection on Windows. Instead, you could use Linux or a virtual machine. Windows has another issue described at the end of this .md file.
 
 To use the bot you need either one of: 
 1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
@@ -42,6 +42,7 @@ https://deeppavlov.github.io/dialog_flow_framework/user_guides/superset_guide
 Issues:
 1. When running the bot from Docker, OpenTelemetry can't send data to the collector. I guess I just don't know enough about the two of these things to make it work.
 2. When running the bot without the data collector running, you may want to ignore Command Line output. The program will inform you that it can't collect the data with OpenTelemetry. To remove that you can comment the after_handler[] lines in main.py
+3. Running Docker-Compose doesn't work on Windows, you could change the WORKDIR in Dockerfile and compose.yml to /app and it will work, but that will break the program on Linux. I guess, the two OS's treat WORKDIRs differently, so I chose to default to running the program in Linux
    
 Possible TBD:
 1. Maybe switch to Compose instead of Docker-Compose (OpenTelemetry marks the latter as deprecated)
