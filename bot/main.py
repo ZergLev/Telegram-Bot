@@ -18,9 +18,12 @@ from dff.utils.testing.common import (
 dff_instrumentor = OtelInstrumentor.from_url("grpc://localhost:4317", insecure=True)
 dff_instrumentor.instrument()
 
-interface = PollingTelegramInterface(token=os.environ["TG_BOT_TOKEN"])
-# Note: token is exposed in .env file, there is no safety present.
-# To-do: Docker Secrets
+f = open(os.getenv("TG_BOT_TOKEN"))
+interface = PollingTelegramInterface(token=f.readline())
+# TG_BOT_TOKEN environment variable equals an address: /run/secrets/bot_token
+# Because of it, the "file" needs to be accessed somehow
+# Note: token is exposed in token.txt file, 
+# but now it's used with Docker Secrets
 
 pipeline = Pipeline.from_dict(
     {
