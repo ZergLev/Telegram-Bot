@@ -19,9 +19,9 @@ export TG_BOT_TOKEN=*******
 (To get the bot token follow the 'telebot' library documentation)
 For now a single bot token is in the .env file. In the future it will be hidden with Docker Secrets
 
-To run the bot, type in the terminal:
+To run the bot, type in the terminal when in Telegram-Bot directory:
 ```commandline
-python main.py
+python bot/main.py
 ```
 Note that all dependencies (dff[telegram, stats]) need to be installed, unlike when you use Docker-Compose.
 You can check out the installation guide in the official DFF documentation:
