@@ -3,13 +3,13 @@ A beginner level bot using Dialog Flow Framework
 
 Requirements. 
 
-It's not recommended to use Windows if you plan on collecting data, because Apache Superset doesn't have official support for it. So far, I haven't managed to launch data collection on Windows. Instead, you could use Linux or a virtual machine. Windows has another issue described at the end of this .md file.
+It's not recommended to use Windows if you plan on collecting data, because Apache Superset doesn't have official support for it. So far, I haven't managed to launch data collection on Windows. Instead, you could use Linux or a virtual machine. Windows has another issue described at the end of this .md file. So far, Windows has zero merits over Linux in regard to this project.
 
 To use the bot you need either one of: 
 1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
 2. Docker with Docker-Compose (Can't use data collection in this mode right now, it's TBD in the future)
 
-Running the bot.
+Running the bot from Telegram-Bot directory:
 1. Directly with your python interpreter.
 
 In order for the bot to work, set the bot token environment variable to your bot token:
