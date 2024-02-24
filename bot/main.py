@@ -18,12 +18,25 @@ from dff.utils.testing.common import (
 dff_instrumentor = OtelInstrumentor.from_url("grpc://localhost:4317", insecure=True)
 dff_instrumentor.instrument()
 
-file = open(os.getenv("TG_BOT_TOKEN"))
-interface = PollingTelegramInterface(token=f.readline())
-file.close()
-# TG_BOT_TOKEN environment variable equals an address: /run/secrets/bot_token
+env_var = os.getenv("TG_BOT_TOKEN")
+
+# There are two ways to launch the bot:
+
+try:
+    file = open(env_var)
+    interface = PollingTelegramInterface(token=file.readline())
+    file.close()
+
+# 1. Launching with Docker-Compose: then the TG_BOT_TOKEN environment
+# variable equals an address: /run/secrets/bot_token
 # Because of it, the "file" needs to be accessed directly.
-# For now I'm just doing it like this.
+
+except (TypeError, FileNotFoundError):
+    interface = PollingTelegramInterface(token=env_var)
+
+# 2. Launching with python interpreter: then we just ask for the environment variable
+# Setting an environment variable is easy, but in case things just don't work,
+# you can replace the TG_BOT_TOKEN with bot token directly(after "else:")
 
 # Note: token is exposed in token.txt file, 
 # but now it's used with Docker Secrets
