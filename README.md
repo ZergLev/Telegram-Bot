@@ -36,6 +36,7 @@ To run the data collector, check out the official DFF User Guide on Supersets, b
 Issues:
 1. When running the bot from Docker, OpenTelemetry can't send data to the collector. I guess I just don't know enough about the two of these things to make it work.
 2. When running the bot without the data collector running, you may want to ignore Command Line output. The program will inform you that it can't collect the data with OpenTelemetry. To remove that you can comment the after_handler[] lines in main.py
+   
 Possible TBD:
 1. Maybe switch to Compose instead of Docker-Compose (OpenTelemetry marks the latter as deprecated)
 2. Using Docker Secrets.
