@@ -2,6 +2,9 @@
 A beginner level bot using Dialog Flow Framework
 
 Requirements. 
+
+It's not recommended to use Windows if you plan on collecting data, because Apache Superset doesn't have official support for it. So far, I haven't managed to launch data collection on Windows. Instead, you could use Linux or a virtual machine.
+
 To use the bot you need either one of: 
 1. Python 3 + Dialog Flow Framework (dff[telegram, stats])
 2. Docker with Docker-Compose (Can't use data collection in this mode right now, it's TBD in the future)
@@ -42,4 +45,3 @@ Issues:
    
 Possible TBD:
 1. Maybe switch to Compose instead of Docker-Compose (OpenTelemetry marks the latter as deprecated)
-2. Using Docker Secrets.
